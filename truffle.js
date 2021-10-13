@@ -1,7 +1,7 @@
 require('dotenv').config();
 
 const { INFURA_TOKEN, MNEMONIC, ETH_HOST, ETH_PORT } = process.env;
-const HDWalletProvider = require('truffle-hdwallet-provider');
+const HDWalletProvider = require('@truffle/hdwallet-provider');
 
 module.exports = {
   networks: {
@@ -26,6 +26,11 @@ module.exports = {
     rinkeby: {
       provider: () => new HDWalletProvider(MNEMONIC, `https://rinkeby.infura.io/${INFURA_TOKEN}`),
       network_id: '4',
+    },
+    polygon: {
+      provider: () => new HDWalletProvider(MNEMONIC, 'https://polygon-rpc.com/'),
+      network_id: '137',
+      gasPrice: 30000000000,
     },
   },
 };
